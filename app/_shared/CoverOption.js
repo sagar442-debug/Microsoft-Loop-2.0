@@ -1,0 +1,26 @@
+export default [
+  {
+    imageUrl:
+      "https://img.freepik.com/free-photo/abstract-colorful-splash-3d-background-generative-ai-background_60438-2494.jpg?t=st=1723149255~exp=1723152855~hmac=c7530884ede228d62623369b0dd9af16b2fd02ac916648c91f5c68243a0ac178&w=1380",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-photo/abstract-blue-gold-swirled-lines-background_9975-32904.jpg?t=st=1723149417~exp=1723153017~hmac=373f90abec707d8d92660eee633be956c39c9c5d04b8efdbf702c4a0f82d83d7&w=1380",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-photo/abstract-purple-background-gradient-transition-generative-ai_169016-30644.jpg?t=st=1723149502~exp=1723153102~hmac=22e3860a505ff3547f13d8a06a9f78b2462aed1685708451e9a0e6a3bc774923&w=1380",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-photo/abstract-wavy-background_23-2150534018.jpg?t=st=1723149532~exp=1723153132~hmac=0df2d2465c8d817f8777af9d3bb5303b427bce32a0c6140d9a600269e515a22a&w=1380",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-photo/abstract-wavy-background_23-2150534088.jpg?t=st=1723149563~exp=1723153163~hmac=5ebeaff781f390b25b7cff556bd69e9f3fca258a2e03afd17a8c72d0aa4cc438&w=1380",
+  },
+  {
+    imageUrl:
+      "https://img.freepik.com/free-vector/minimalist-background-hand-drawn-style_23-2149027023.jpg?t=st=1723149603~exp=1723153203~hmac=1de11f2ce9ed262f5799d26a3e5ded7bc768f47b186d23d49b08be401e072216&w=1060",
+  },
+];
