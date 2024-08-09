@@ -3,15 +3,55 @@ import CoverPicker from "@/app/_components/CoverPicker";
 import EmojiPickerComponent from "@/app/_components/EmojiPickerComponent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { db } from "@/config/firebaseConfig";
+import { useAuth, useUser } from "@clerk/nextjs";
 import EmojiPicker from "emoji-picker-react";
-import { SmilePlus } from "lucide-react";
+import { doc, setDoc } from "firebase/firestore";
+import { Loader2Icon, SmilePlus } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import uuid4 from "uuid4";
 
 function CreateWorkspace() {
   const [coverImage, setCoverImage] = useState("/cover.png");
   const [workspaceName, setWorkspaceName] = useState("");
   const [emoji, setEmoji] = useState();
+  const { user } = useUser();
+  const { orgId } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const OnCreateWorkspace = async () => {
+    setLoading(true);
+    const workspaceId = Date.now();
+    const result = await setDoc(doc(db, "Workspace", workspaceId.toString()), {
+      workspaceName: workspaceName,
+      emoji: emoji || "",
+      coverUrl: coverImage,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
+      id: workspaceId,
+      orgId: orgId ? orgId : user?.primaryEmailAddress?.emailAddress,
+    });
+    const docId = uuid4();
+    await setDoc(doc(db, "workspaceDocuments", docId.toString()), {
+      workspaceId: workspaceId,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
+      coverImage: null,
+      emoji: null,
+      id: docId,
+      documentOutput: [],
+    });
+
+    await setDoc(
+      doc(db, "documentOutput", docId.toString(), {
+        docId: docId,
+        output: [],
+      })
+    );
+
+    router.replace("/workspace/" + workspaceId + "/" + docId);
+    setLoading(false);
+  };
 
   return (
     <div className="p-10 md:px-36 lg:px-64 xl:px-96 py-28">
@@ -49,7 +89,12 @@ function CreateWorkspace() {
             />
           </div>
           <div className="mt-7 flex justify-end gap-2">
-            <Button disabled={!(workspaceName?.length > 2)}>Create</Button>
+            <Button
+              onClick={OnCreateWorkspace}
+              disabled={!(workspaceName?.length > 2) || loading}
+            >
+              Create {loading && <Loader2Icon className="animate-spin" />}
+            </Button>
             <Button variant="outline">Cancel</Button>
           </div>
         </div>
