@@ -39,15 +39,14 @@ function CreateWorkspace() {
       coverImage: null,
       emoji: null,
       id: docId,
+      documentName: "Untitled Document",
       documentOutput: [],
     });
 
-    await setDoc(
-      doc(db, "documentOutput", docId.toString(), {
-        docId: docId,
-        output: [],
-      })
-    );
+    await setDoc(doc(db, "documentOutput", docId.toString()), {
+      docId: docId,
+      output: [],
+    });
 
     router.replace("/workspace/" + workspaceId + "/" + docId);
     setLoading(false);

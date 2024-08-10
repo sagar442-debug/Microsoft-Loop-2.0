@@ -1,12 +1,14 @@
+"use client";
+
 import React from "react";
 import SideNav from "../../_components/SideNav";
 
-function WorkspaceDocument() {
+function WorkspaceDocument({ params }) {
   return (
     <div>
       {/* SideNav */}
       <div className=" ">
-        <SideNav />
+        <SideNav params={params} />
       </div>
       <div className="md:ml-72">Document</div>
     </div>
